@@ -32,6 +32,11 @@ module.exports = {
         use: ['file-loader']
       },
       {
+        test: /\.mp3$/,
+        loader: 'file-loader',
+        
+      },
+      {
         test: /\.m?js$/,
         exclude: /node_modules/,
         use: {

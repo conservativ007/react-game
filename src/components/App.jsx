@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import Componenta from './Componenta.jsx';
 import Footer from './Footer.jsx';
 import Head from './Head.jsx';
+import Settings from './Settings.jsx';
+
+
 
 function App() {
 
@@ -11,6 +14,7 @@ function App() {
   let [move, setMove] = useState(true);
   let [x, setX] = useState('-');
   let [o, setO] = useState('-');
+  let [soundPlay, setSoundPlay] = useState(false);
 
   const winnerLines = [
     [0,1,2],
@@ -36,9 +40,10 @@ function App() {
 
     setArr(copy);
     setCounter(counter += 1);
-
+    
     isWin(element, copy)
   }
+
 
   function isWin(element, copy){
 
@@ -77,6 +82,7 @@ function App() {
     index={index} 
     elem={elem} 
     clickHandler={clickHandler}
+    soundPlay={soundPlay}
     />
   })
 
@@ -88,6 +94,10 @@ function App() {
           {result}
         </div>
       </div>
+      <Settings 
+        soundPlay={soundPlay} 
+        setSoundPlay={setSoundPlay} 
+      />
       <Footer resetGame={resetGame} />
     </>
   )

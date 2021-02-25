@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-// import {Howl, Howler} from 'howler';
+import soundfile from '../click2.mp3'; 
 
 export default function Componenta({clickHandler, index, elem, soundPlay}) {
 
@@ -10,16 +10,23 @@ export default function Componenta({clickHandler, index, elem, soundPlay}) {
     a = <div className='gamer-o'>&#9675;</div>;
   }
 
+  function sound() {
+    if(soundPlay !== true) return;
+    // console.log(' sound ');
+    // console.log(soundfile);
+
+    let audio = new Audio();
+    // audio.preload = 'auto';
+    audio.src = soundfile;
+    audio.play();
+  }
+
   return (
     <div 
       className='elem-board' 
       onClick={() => clickHandler(index)}
+      onMouseUp={sound}
     >
-  {/* сдесь в дальнейшем будет обработка аудио */}
-    {/* <audio className='eee'> */}
-      {/* <source src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"/> */}
-      {/* <source src="./click3.m4a" type="audio/mpeg" /> */}
-    {/* </audio> */}
       {a}
     </div>
   )

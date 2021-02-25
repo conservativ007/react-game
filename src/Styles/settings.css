@@ -1,0 +1,44 @@
+.settings{
+  margin: 0 auto;
+  width: 650px;
+  height: 70px;
+  border: 1px solid red;
+  box-sizing: border-box;
+}
+
+
+
+input[type='checkbox']{
+  position: relative;
+  width: 15px;
+  height: 15px;
+  -webkit-appearance: none;
+  outline: none;
+  transition: .5s;
+}
+
+input[type='checkbox']:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #262626;
+  transition: .5s;
+}
+
+input:checked[type='checkbox']:before{
+  border-left: none;
+  border-top: none;
+  width: 10px;
+  border-color: #0da192;
+  border-width: 2px;
+  transform: rotate(45deg) translate(5px, -5px)
+}
+
+label{
+  font-size: 15px;
+  font-family: sans-serif;
+  margin-left: 10px;
+}
