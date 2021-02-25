@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Componenta from './Componenta.jsx';
 import Footer from './Footer.jsx';
+import Head from './Head.jsx';
 
 function App() {
 
@@ -81,6 +82,7 @@ function App() {
 
   return (
     <>
+      <Head elem={a1} x={x} o={o} />
       <div className="board">
         <div className="tic-tac-toe">
           {result}
