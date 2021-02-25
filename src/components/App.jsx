@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Componenta from './Componenta.jsx';
+import Footer from './Footer.jsx';
 
 function App() {
 
@@ -62,6 +63,13 @@ function App() {
     }
   }
 
+  function resetGame(){
+    setArr(Array(9).fill(null))
+    setCounter(0)
+    setA1('x')
+    setMove(true)
+  }
+
   let result = arr.map((elem, index) => {
     return <Componenta 
     key={index} 
@@ -78,6 +86,7 @@ function App() {
           {result}
         </div>
       </div>
+      <Footer resetGame={resetGame} />
     </>
   )
 }
