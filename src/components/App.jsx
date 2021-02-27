@@ -19,6 +19,7 @@ function App() {
   let [soundPlay, setSoundPlay] = useState(false);
   let [soundClick, setSoundClick] = useState(0.5);
   let [gamer, setGamer] = useState(true);
+  let [board, setBoard] = useState(true);
 
   const winnerLines = [
     [0,1,2],
@@ -30,6 +31,14 @@ function App() {
     [0,4,8],
     [2,4,6]
   ];
+
+  // let styleBoard = ['board-1', 'board-2'];
+  // useEffect(() => {
+  //   if(board){
+
+  //   }
+  //   console.log(board)
+  // }, [board])
 
   function clickHandler(index) {
     
@@ -93,9 +102,9 @@ function App() {
 
   return (
     <>
-      <Context.Provider value={{setGamer, gamer}} >
+      <Context.Provider value={{setGamer, gamer, board, setBoard}} >
         <Head elem={a1} x={x} o={o} />
-        <div className="board">
+        <div className={board ? 'board board-1' : 'board board-2'}>
           <div className="tic-tac-toe">
             {result}
           </div>

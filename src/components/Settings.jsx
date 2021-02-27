@@ -30,6 +30,12 @@ export default function Settings({soundPlay, setSoundPlay, setSoundClick, soundC
     setGamer(!gamer)
   }
 
+  function changeSettingsBoard() {
+    let board = context.board;
+    let setBoard = context.setBoard;
+    setBoard(!board)
+  }
+
   
 
   return (
@@ -62,11 +68,16 @@ export default function Settings({soundPlay, setSoundPlay, setSoundClick, soundC
       </div>
 
       <div className="set-gamer">
-        <input id='s3' type="checkbox" onChange={changeSettingsGamer}/>
-        <label htmlFor="s3">change x, y</label>
+        <div>
+          <input id='s3' type="checkbox" onChange={changeSettingsGamer}/>
+          <label htmlFor="s3">change x, y</label>
+        </div>
+        
+        <div>
+          <input id='s4' type="checkbox" onChange={changeSettingsBoard} />
+          <label htmlFor="s4">change board</label>
+        </div>
       </div>
-
-
     </div>
   )
 }

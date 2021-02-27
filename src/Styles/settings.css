@@ -73,6 +73,8 @@
 }
 
 .set-gamer{
+  display: flex;
+  flex-direction: column;
   position: relative;
   top: 10px;
 }
