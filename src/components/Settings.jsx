@@ -1,40 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '.././styles/settings.css';
+import soundfile from '../Orc-Theme.mp3'; 
+import Input from './Input.jsx';
+import {Context} from './Context.jsx';
 
-export default function Settings({soundPlay, setSoundPlay}) {
+export default function Settings({soundPlay, setSoundPlay, setSoundClick, soundClick}) {
+  
+  let [musicPlay, setMusicPlay] = useState(false);
+  let [audioVolume, setAudioVolume] = useState(0.5);
+  
+  useEffect(() => {
 
- 
-  // function playSound() {
+    let audio = document.querySelector('.audio-trac');
+    if(musicPlay) {
+      audio.play();
+      audio.volume = audioVolume;
+    } else {
+      audio.pause();
+    }
     
-  //   setSound(sound = !sound); 
-  //   console.log('play-sound', sound)
+  }, [musicPlay, audioVolume])
 
-  //   let audio = new Audio();
-  //   audio.preload = 'auto';
-  //   audio.src = '../../public/sound/sound1.mp3';
-  //   audio.play();
-  // }
+  let context = useContext(Context)
+  
 
-  // function playMusic() {
-  //   console.log('play-music')
-  // }
+  function changeSettingsGamer() {
+    let setGamer = context.setGamer;
+    let gamer = context.gamer;
+    setGamer(!gamer)
+  }
+
+  
 
   return (
     <div className='settings'>
 
-      {/* <div className='sound'>
-        <input type='checkbox' id='s2' onClick={() => playSound()} />
-        <label htmlFor="s2">включить музончик</label>
-      </div> */}
-      
       <div className='sound'>
-        <input 
-          id='s1' 
-          type='checkbox' 
-          onChange={() => setSoundPlay(soundPlay = !soundPlay)} 
-        />
-        <label htmlFor="s1">включить звуки</label>
+        <div>
+          <audio className='audio-trac' src={soundfile}></audio>
+          <input 
+            id='s2'
+            type='checkbox' 
+            onChange={() => setMusicPlay(!musicPlay)}
+          />
+
+          <output htmlFor='fader'>{audioVolume * 10}</output>  
+          <Input setAudioVolume={setAudioVolume} />
+          <label htmlFor="s2">music</label>
+        </div>
+        
+        <div>
+          <input 
+            id='s1'
+            type='checkbox' 
+            onChange={() => setSoundPlay(!soundPlay)} 
+          />
+          <output htmlFor='fader'>{soundClick * 10}</output> 
+          <Input setSoundClick={setSoundClick} />
+          <label htmlFor="s1">click</label>
+        </div>
       </div>
+
+      <div className="set-gamer">
+        <input id='s3' type="checkbox" onChange={changeSettingsGamer}/>
+        <label htmlFor="s3">change x, y</label>
+      </div>
+
+
     </div>
   )
 }

@@ -1,9 +1,80 @@
 .settings{
+  display: flex;
   margin: 0 auto;
   width: 650px;
   height: 70px;
-  border: 1px solid red;
+  border: 1px solid silver;
   box-sizing: border-box;
+}
+
+.gamer-x-style1{
+  font-size: 70px;
+  color: #fff;
+}
+
+.gamer-o-style1{
+  font-size: 70px;
+  color: #ff7675;
+}
+
+.gamer-x-style2{
+  position: relative;
+  font-family: 'Indie Flower', cursive;
+  font-weight: 100;
+  font-size: 70px;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255 ,.8), 0 0 20px rgba(255, 255, 255 ,.8), 0 0 22px rgba(255, 255, 255 ,.8), 0 0 40px rgba(219, 66, 217 ,.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gamer-x-style2 span{
+  display: block; 
+  position: absolute;
+  height: 5px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: white;
+  font-family: 'Indie Flower', cursive;
+  font-weight: 100;
+  text-shadow: 0 0 10px rgba(255, 255, 255 ,.8), 0 0 20px rgba(255, 255, 255 ,.8), 0 0 22px rgba(255, 255, 255 ,.8), 0 0 40px rgba(219, 66, 217 ,.8);
+}
+
+
+.gamer-x-style2 span:nth-child(1) {
+  box-shadow: 0 0 10px rgba(255, 255, 255 ,.8), 0 0 20px rgba(255, 255, 255 ,.8), 0 0 22px rgba(255, 255, 255 ,.8), 0 0 40px rgba(219, 66, 217 ,.8);
+  transform: rotate(45deg);
+  
+}
+
+.gamer-x-style2 span:nth-child(2) {
+  box-shadow: 0 0 10px rgba(255, 255, 255 ,.8), 0 0 20px rgba(255, 255, 255 ,.8), 0 0 22px rgba(255, 255, 255 ,.8), 0 0 40px rgba(219, 66, 217 ,.8);
+  transform: rotate(-45deg);
+}
+
+.gamer-o-style2 span{
+  display: block; 
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 4px solid #ff6b6b;
+  background-color: #14bdac;
+  box-shadow: 0 0 10px rgba(232,105,115 ,.8), 0 0 20px rgba(232,105,115 ,.8), 0 0 22px rgba(232,105,115 ,.8), 0 0 40px rgba(219, 66, 217 ,.8);
+  box-shadow: inset 0 0 10px rgba(214, 48, 49,1.0), 0 0 20px rgba(232,105,115 ,.8), 0 0 22px rgba(232,105,115 ,.8), 0 0 40px rgba(219, 66, 217 ,.8);
+}
+
+
+.sound {
+  position: relative;
+  top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.set-gamer{
+  position: relative;
+  top: 10px;
 }
 
 
@@ -41,4 +112,16 @@ label{
   font-size: 15px;
   font-family: sans-serif;
   margin-left: 10px;
+}
+
+
+output{
+  position: absolute;
+  left: 30px;
+  top: -8px;
+  padding: 2px 2px;
+  font-size: 10px;
+  background: #0da192;
+  color: white;
+  border-radius: 3px;
 }

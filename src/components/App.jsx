@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Componenta from './Componenta.jsx';
 import Footer from './Footer.jsx';
 import Head from './Head.jsx';
 import Settings from './Settings.jsx';
+import {Context} from './Context.jsx';
 
 
 
@@ -14,7 +15,10 @@ function App() {
   let [move, setMove] = useState(true);
   let [x, setX] = useState('-');
   let [o, setO] = useState('-');
+
   let [soundPlay, setSoundPlay] = useState(false);
+  let [soundClick, setSoundClick] = useState(0.5);
+  let [gamer, setGamer] = useState(true);
 
   const winnerLines = [
     [0,1,2],
@@ -83,22 +87,27 @@ function App() {
     elem={elem} 
     clickHandler={clickHandler}
     soundPlay={soundPlay}
+    soundClick={soundClick}
     />
   })
 
   return (
     <>
-      <Head elem={a1} x={x} o={o} />
-      <div className="board">
-        <div className="tic-tac-toe">
-          {result}
+      <Context.Provider value={{setGamer, gamer}} >
+        <Head elem={a1} x={x} o={o} />
+        <div className="board">
+          <div className="tic-tac-toe">
+            {result}
+          </div>
         </div>
-      </div>
-      <Settings 
-        soundPlay={soundPlay} 
-        setSoundPlay={setSoundPlay} 
-      />
-      <Footer resetGame={resetGame} />
+        <Settings 
+          soundPlay={soundPlay}
+          setSoundPlay={setSoundPlay}
+          soundClick={soundClick}
+          setSoundClick={setSoundClick}
+        />
+        <Footer resetGame={resetGame} />
+      </Context.Provider>
     </>
   )
 }
