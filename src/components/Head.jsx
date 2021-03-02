@@ -27,7 +27,7 @@ export default function Head({elem, setA1, x, o}) {
       </div>
       <div className='move'>
         <div>
-          <select onChange={e => setA1(e.target.value)}>
+          <select value={context.a1} onChange={e => setA1(e.target.value)}>
             <option value="select-gamer" disabled>select gamer</option>
             <option value="x">x</option>
             <option value="o">o</option>

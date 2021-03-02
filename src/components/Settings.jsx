@@ -1,13 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import '.././styles/settings.css';
 import soundfile from '../Orc-Theme.mp3'; 
 import Input from './Input.jsx';
+import Records from './Records.jsx';
 import {Context} from './Context.jsx';
+import useKeypress from 'react-use-keypress';
 
 export default function Settings({soundPlay, setSoundPlay, setSoundClick, soundClick}) {
   
   let [musicPlay, setMusicPlay] = useState(false);
   let [audioVolume, setAudioVolume] = useState(0.5);
+  let context = useContext(Context)
+
   
   useEffect(() => {
 
@@ -21,8 +26,35 @@ export default function Settings({soundPlay, setSoundPlay, setSoundClick, soundC
     
   }, [musicPlay, audioVolume])
 
-  let context = useContext(Context)
+
+  useKeypress('q', () => {
+    setMusicPlay(!musicPlay);
+    document.querySelector('#s2').checked = !musicPlay;
+  });
   
+  useKeypress('w', () => {
+    setSoundPlay(!soundPlay);
+    document.querySelector('#s1').checked = !soundPlay;
+  });
+  
+  useKeypress('e', () => {
+    changeSettingsGamer();
+    document.querySelector('#s3').checked = context.gamer;
+  });
+  
+  useKeypress('r', () => {
+    changeSettingsBoard();
+    document.querySelector('#s4').checked = context.board;
+  });
+ 
+  useKeypress('t', () => {
+    context.resetGame();
+  });
+  
+  useKeypress('y', () => {
+    context.setA1(context.a1 === 'x' ? 'o' : 'x')
+  });
+
 
   function changeSettingsGamer() {
     let setGamer = context.setGamer;

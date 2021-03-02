@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+
 import Componenta from './Componenta.jsx';
 import Footer from './Footer.jsx';
 import Head from './Head.jsx';
 import Settings from './Settings.jsx';
+import Records from './Records.jsx';
 import {Context} from './Context.jsx';
 
 function App() {
@@ -87,8 +90,7 @@ function App() {
   })
 
   return (
-    <>
-      <Context.Provider value={{setGamer, gamer, board, setBoard, setSelect, select}} >
+      <Context.Provider value={{setGamer, gamer, board, setBoard, setSelect, select, resetGame, setA1, a1}} >
         <Head elem={a1} setA1={setA1} x={x} o={o} />
         <div className={board ? 'board board-1' : 'board board-2'}>
           <div className="tic-tac-toe">
@@ -103,7 +105,6 @@ function App() {
         />
         <Footer resetGame={resetGame} />
       </Context.Provider>
-    </>
   )
 }
 
