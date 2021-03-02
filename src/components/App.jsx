@@ -5,16 +5,14 @@ import Head from './Head.jsx';
 import Settings from './Settings.jsx';
 import {Context} from './Context.jsx';
 
-
-
 function App() {
 
   const [arr, setArr] = useState(Array(9).fill(null))
-  let [counter, setCounter] = useState(0)
   let [a1, setA1] = useState('x')
   let [move, setMove] = useState(true);
   let [x, setX] = useState('-');
   let [o, setO] = useState('-');
+  let [select, setSelect] = useState('x');
 
   let [soundPlay, setSoundPlay] = useState(false);
   let [soundClick, setSoundClick] = useState(0.5);
@@ -32,29 +30,18 @@ function App() {
     [2,4,6]
   ];
 
-  // let styleBoard = ['board-1', 'board-2'];
-  // useEffect(() => {
-  //   if(board){
-
-  //   }
-  //   console.log(board)
-  // }, [board])
-
   function clickHandler(index) {
     
     let copy = arr.slice();
-    let element = counter % 2 === 0 ? 'x' : 'o';
-
+    
     if(copy[index] !== null) return;
     if(!move) return;
 
-    copy[index] = element;
-    setA1(element === 'x' ? 'o' : 'x');
+    copy[index] = a1;
+    setA1(a1 === 'x' ? 'o' : 'x');
 
     setArr(copy);
-    setCounter(counter += 1);
-    
-    isWin(element, copy)
+    isWin(a1, copy)
   }
 
 
@@ -78,32 +65,31 @@ function App() {
       } else if(element === 'o') {
         setO(o === '-' ? 1 : o += 1);
       }
-       
     }
   }
 
   function resetGame(){
     setArr(Array(9).fill(null))
-    setCounter(0)
-    setA1('x')
+    setA1(select)
     setMove(true)
   }
 
   let result = arr.map((elem, index) => {
     return <Componenta 
-    key={index} 
-    index={index} 
-    elem={elem} 
-    clickHandler={clickHandler}
-    soundPlay={soundPlay}
-    soundClick={soundClick}
+      key={index} 
+      index={index} 
+      elem={elem} 
+      clickHandler={clickHandler}
+      soundPlay={soundPlay}
+      soundClick={soundClick}
+      a1={a1}
     />
   })
 
   return (
     <>
-      <Context.Provider value={{setGamer, gamer, board, setBoard}} >
-        <Head elem={a1} x={x} o={o} />
+      <Context.Provider value={{setGamer, gamer, board, setBoard, setSelect, select}} >
+        <Head elem={a1} setA1={setA1} x={x} o={o} />
         <div className={board ? 'board board-1' : 'board board-2'}>
           <div className="tic-tac-toe">
             {result}

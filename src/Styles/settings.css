@@ -127,12 +127,15 @@ label{
   margin-left: 10px;
 }
 
+.set-range{
+  position: relative;
+}
 
 output{
   position: absolute;
   left: 30px;
-  top: -8px;
-  padding: 2px 2px;
+  top: -6px;
+  padding: 1px 2px;
   font-size: 10px;
   background: #0da192;
   color: white;

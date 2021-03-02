@@ -36,13 +36,12 @@ export default function Settings({soundPlay, setSoundPlay, setSoundClick, soundC
     setBoard(!board)
   }
 
-  
 
   return (
     <div className='settings'>
 
       <div className='sound'>
-        <div>
+        <div className='set-range'>
           <audio className='audio-trac' src={soundfile}></audio>
           <input 
             id='s2'
@@ -50,18 +49,18 @@ export default function Settings({soundPlay, setSoundPlay, setSoundClick, soundC
             onChange={() => setMusicPlay(!musicPlay)}
           />
 
-          <output htmlFor='fader'>{audioVolume * 10}</output>  
+          <output htmlFor='s2'>{audioVolume * 10}</output>  
           <Input setAudioVolume={setAudioVolume} />
           <label htmlFor="s2">music</label>
         </div>
         
-        <div>
+        <div className='set-range'>
           <input 
             id='s1'
             type='checkbox' 
             onChange={() => setSoundPlay(!soundPlay)} 
           />
-          <output htmlFor='fader'>{soundClick * 10}</output> 
+          <output htmlFor='s1'>{soundClick * 10}</output> 
           <Input setSoundClick={setSoundClick} />
           <label htmlFor="s1">click</label>
         </div>
