@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import soundfile from '../click2.mp3'; 
 import Gamer from './Gamer.jsx';
+import {Context} from './Context.jsx';
 
 export default function Componenta({clickHandler, index, elem, soundPlay, soundClick}) {
+  let context = useContext(Context)
 
   function sound() {
     if(soundPlay !== true) return;
@@ -15,7 +17,7 @@ export default function Componenta({clickHandler, index, elem, soundPlay, soundC
 
   return (
     <div 
-      className='elem-board' 
+      className={context.board ? 'elem-board elem-board1' : 'elem-board elem-board2'} 
       onClick={() => clickHandler(index)}
       onMouseUp={sound}
     >

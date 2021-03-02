@@ -19,7 +19,7 @@ export default function Gamer({elem}) {
           <span></span>
         </div>;
   } else if (elem === 'o' && !context.gamer) {
-    a = <div className='gamer-o-style2'>
+    a = <div className={context.board ? 'gamer-o-style2' : 'gamer-o-style3'}>
           <span></span>
         </div>;
   }

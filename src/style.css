@@ -28,12 +28,20 @@
 .elem-board{
   width: 72px;
   height: 72px;
-  border: 2px solid #0da192;
+  
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 22px;
+}
+
+.elem-board1 {
+  border: 2px solid #0da192;
+}
+
+.elem-board2 {
+  border: 2px solid #0984e3;
 }
 
 .elem-board:nth-child(1){
