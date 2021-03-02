@@ -1,5 +1,6 @@
 .settings{
   display: flex;
+  position: relative;
   margin: 0 auto;
   width: 650px;
   height: 70px;
@@ -140,4 +141,17 @@ output{
   background: #0da192;
   color: white;
   border-radius: 3px;
+}
+
+.records{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  
+}
+
+.records a{
+  color: #ff6b6b;
+  text-transform: uppercase;
+  font-size: 12px;
 }

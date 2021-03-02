@@ -1,10 +1,11 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import '.././styles/head.css'
 import {Context} from './Context.jsx';
 
 export default function Head({elem, setA1, x, o}) {
   let context = useContext(Context)
   let text = 'ходит: ';
+  
   if(elem === 'Игра окончена' || elem === 'ничья!') text = '';
   let result;
 
@@ -36,9 +37,7 @@ export default function Head({elem, setA1, x, o}) {
         <div>
           {text} {elem}
         </div>
-        
       </div>
-      
     </div>
   )
 }

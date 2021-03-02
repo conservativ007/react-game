@@ -109,6 +109,10 @@ export default function Settings({soundPlay, setSoundPlay, setSoundClick, soundC
           <label htmlFor="s4">change board</label>
         </div>
       </div>
+
+      <div className="records">
+        <a href="/records">records</a>
+      </div>
     </div>
   )
 }

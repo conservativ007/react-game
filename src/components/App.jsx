@@ -7,6 +7,8 @@ import Head from './Head.jsx';
 import Settings from './Settings.jsx';
 import Records from './Records.jsx';
 import {Context} from './Context.jsx';
+import {saveRecord} from './function';
+
 
 function App() {
 
@@ -21,6 +23,7 @@ function App() {
   let [soundClick, setSoundClick] = useState(0.5);
   let [gamer, setGamer] = useState(true);
   let [board, setBoard] = useState(true);
+  let [winner, setWinner] = useState(false);
 
   const winnerLines = [
     [0,1,2],
@@ -47,7 +50,6 @@ function App() {
     isWin(a1, copy);
   }
 
-
   function isWin(element, copy){
 
     let win = winnerLines.some(test => {
@@ -59,9 +61,11 @@ function App() {
     })
 
     if(win) {
-      console.log(element + ' winner')
-      setA1('Игра окончена')
+      console.log(element + ' winner');
+      setWinner(element);
+      setA1('Игра окончена');
       setMove(false);
+      saveRecord(element);
 
       if(element === 'x'){
         setX(x === '-' ? 1 : x += 1);
@@ -70,6 +74,7 @@ function App() {
       }
     }
   }
+  
 
   function resetGame(){
     setArr(Array(9).fill(null))
@@ -98,7 +103,8 @@ function App() {
   })
 
   return (
-      <Context.Provider value={{setGamer, gamer, board, setBoard, setSelect, select, resetGame, setA1, a1}} >
+    <Router>
+      <Context.Provider value={{setGamer, gamer, board, setBoard, setSelect, select, resetGame, setA1, a1, winner}} >
         <Head elem={a1} setA1={setA1} x={x} o={o} />
         <div className={board ? 'board board-1' : 'board board-2'}>
           <div className="tic-tac-toe">
@@ -113,6 +119,10 @@ function App() {
         />
         <Footer resetGame={resetGame} />
       </Context.Provider>
+      <Switch>
+        <Route exact path="/records" component={Records} />
+      </Switch>
+    </Router>
   )
 }
 
