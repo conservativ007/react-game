@@ -82,7 +82,6 @@ function App() {
     if(result) {
       setA1('ничья!');
     }
-    // console.log('result', result)
   }, [arr]);
   
 

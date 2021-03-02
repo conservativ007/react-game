@@ -1,0 +1,46 @@
+.footer{
+  border: 1px solid silver;
+  box-sizing: border-box;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 650px;
+  height: 50px;
+  margin: 0 auto;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.author{
+  display: flex;
+  justify-content: center;
+  text-transform: lowercase;
+  width: 216px;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.reset-game{
+  display: flex;
+  justify-content: center;
+  font: 14px "Fira Sans", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #14bdac;
+  width: 216px;
+}
+
+.link{
+  display: flex;
+  justify-content: center;
+  width: 216px;
+}
+
+.footer-img{
+  width: 50px;
+}
