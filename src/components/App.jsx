@@ -44,7 +44,7 @@ function App() {
     setA1(a1 === 'x' ? 'o' : 'x');
 
     setArr(copy);
-    isWin(a1, copy)
+    isWin(a1, copy);
   }
 
 
@@ -76,6 +76,15 @@ function App() {
     setA1(select)
     setMove(true)
   }
+
+  useEffect(() => {
+    let result = arr.every(i => i !== null)
+    if(result) {
+      setA1('ничья!');
+    }
+    // console.log('result', result)
+  }, [arr]);
+  
 
   let result = arr.map((elem, index) => {
     return <Componenta 

@@ -7,7 +7,7 @@ module.exports = {
   entry: ["@babel/polyfill", './src/index.jsx'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].js',
+    filename: 'bundle.js',
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),

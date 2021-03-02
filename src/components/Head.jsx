@@ -5,16 +5,16 @@ import {Context} from './Context.jsx';
 export default function Head({elem, setA1, x, o}) {
   let context = useContext(Context)
   let text = 'ходит: ';
-  if(elem === 'Игра окончена') text = '';
+  if(elem === 'Игра окончена' || elem === 'ничья!') text = '';
   let result;
 
     result = 
     <>
-      <div className={context.select === 'x' ? "gamers-one active" : "gamers-one"}>
+      <div className={context.a1 === 'x' ? "gamers-one active" : "gamers-one"}>
         <span>x</span>
         <span>{x}</span>
       </div>
-      <div className={context.select !== 'x' ? "gamers-two active" : "gamers-two"}>
+      <div className={context.a1 !== 'x' ? "gamers-two active" : "gamers-two"}>
         <span>o</span>
         <span>{o}</span>
       </div>
