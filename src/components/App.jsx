@@ -7,13 +7,15 @@ import Head from './Head.jsx';
 import Settings from './Settings.jsx';
 import Records from './Records.jsx';
 import {Context} from './Context.jsx';
-import {saveRecord} from './function';
+import {saveRecord, getArrayInLocalStorage, getA1InLocalStorage} from './function';
 
 
 function App() {
 
-  const [arr, setArr] = useState(Array(9).fill(null))
-  let [a1, setA1] = useState('x')
+  let arrInLocal = getArrayInLocalStorage();
+  let a1InLocal = getA1InLocalStorage();
+  const [arr, setArr] = useState( arrInLocal ? arrInLocal : Array(9).fill(null) );
+  let [a1, setA1] = useState(a1InLocal ? a1InLocal : 'x')
   let [move, setMove] = useState(true);
   let [x, setX] = useState('-');
   let [o, setO] = useState('-');
@@ -24,6 +26,16 @@ function App() {
   let [gamer, setGamer] = useState(true);
   let [board, setBoard] = useState(true);
   let [winner, setWinner] = useState(false);
+
+
+  useEffect(() => {
+    localStorage.setItem("array", JSON.stringify(arr));
+  }, [arr]);
+  
+  useEffect(() => {
+    localStorage.setItem("a1", a1);
+  }, [a1]);
+
 
   const winnerLines = [
     [0,1,2],
