@@ -80,6 +80,7 @@ function App() {
     setArr(Array(9).fill(null))
     setA1(select)
     setMove(true)
+    setWinner(false);
   }
 
   useEffect(() => {

@@ -4,6 +4,22 @@ import {Context} from './Context.jsx';
 
 export default function Head({elem, setA1, x, o}) {
   let context = useContext(Context)
+  let winner = 'победитель - ';
+
+  let [textWinner, setTextWinner] = useState(false);
+
+  
+
+  useEffect(() => {
+    setTextWinner(context.winner);
+  }, [context.winner])
+
+  useEffect(() => {
+    if(textWinner) {
+      setTimeout(() => setTextWinner(false), 3000);
+    }
+  }, [textWinner]);
+
   let text = 'ходит: ';
   
   if(elem === 'Игра окончена' || elem === 'ничья!') text = '';
@@ -35,7 +51,7 @@ export default function Head({elem, setA1, x, o}) {
           </select>
         </div>
         <div>
-          {text} {elem}
+          {text} {elem} {textWinner ? winner + textWinner : ''}
         </div>
       </div>
     </div>
