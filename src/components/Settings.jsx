@@ -111,7 +111,8 @@ export default function Settings({soundPlay, setSoundPlay, setSoundClick, soundC
       </div>
 
       <div className="records">
-        <a href="/records">records</a>
+        <a href="/records">show records</a>
+        <a href="/">hide records</a>
       </div>
     </div>
   )

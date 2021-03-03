@@ -122,6 +122,7 @@ function App() {
       </Context.Provider>
       <Switch>
         <Route exact path="/records" component={Records} />
+        <Route exact path="/" />
       </Switch>
     </Router>
   )

@@ -1,4 +1,5 @@
 .footer{
+  position: relative;
   border: 1px solid silver;
   border-top: none;
   box-sizing: border-box;
@@ -46,4 +47,12 @@ a{
 
 .footer-img{
   width: 50px;
+}
+
+.year{
+  position: absolute;
+  top: translate-transform(50%, 50%);
+  right: 25px;
+  font-size: 14px;
+  font-family: sans-serif;
 }

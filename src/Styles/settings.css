@@ -91,7 +91,11 @@
   top: 10px;
 }
 
-
+input{
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+}
 
 input[type='checkbox']{
   position: relative;
@@ -147,6 +151,10 @@ output{
   position: absolute;
   right: 10px;
   top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: flex-end;
   
 }
 
