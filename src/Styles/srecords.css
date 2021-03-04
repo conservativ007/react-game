@@ -1,0 +1,6 @@
+.table-records{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
