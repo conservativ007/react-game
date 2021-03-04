@@ -97,7 +97,7 @@ function App() {
 
   useEffect(() => {
     let result = arr.every(i => i !== null)
-    if(result) {
+    if(result && a1 !== 'Игра окончена') {
       setA1('ничья!');
     }
   }, [arr]);

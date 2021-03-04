@@ -28,6 +28,19 @@ function getA1InLocalStorage() {
   return res;
 }
 
+function getSittingsInLocalStorage(value) {
+  let res = localStorage.getItem(value);
+  return res;
+}
+
+
+
+export {
+  saveRecord, 
+  getArrayInLocalStorage, 
+  getA1InLocalStorage, 
+  getSittingsInLocalStorage, 
+}
 // let [autoPlay, setAutoPlay] = useState(false);
 // useEffect(() => {
 
@@ -77,4 +90,3 @@ function getA1InLocalStorage() {
 //   console.log(arr)
 // }, [autoPlay])
 
-export {saveRecord, getArrayInLocalStorage, getA1InLocalStorage}

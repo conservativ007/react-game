@@ -8,8 +8,6 @@ export default function Head({elem, setA1, x, o}) {
 
   let [textWinner, setTextWinner] = useState(false);
 
-  
-
   useEffect(() => {
     setTextWinner(context.winner);
   }, [context.winner])
