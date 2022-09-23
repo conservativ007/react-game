@@ -1,58 +1,104 @@
-.footer{
+.footer {
+  width: 100%;
+  height: 50px;
   position: relative;
   border: 1px solid silver;
   border-top: none;
   box-sizing: border-box;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  width: 650px;
-  height: 50px;
-  margin: 0 auto;
-  
+
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  cursor: pointer;
+
+  background-color: #fdcb6e;
+  z-index: 1;
 }
 
-
-
-.author{
+.author {
+  width: 120px;
   display: flex;
   justify-content: center;
   text-transform: lowercase;
-  width: 216px;
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
 }
 
-.reset-game{
+.reset-game {
+  width: 121px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   font: 14px "Fira Sans", sans-serif;
   text-transform: uppercase;
   font-weight: bold;
   color: #14bdac;
-  width: 216px;
+
+  cursor: pointer;
 }
 
-.link{
+.reset-game div {
+  font-size: 40px;
+  position: absolute;
+}
+
+.animate-down {
+  animation-name: move-down;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+.animate-up {
+  animation-name: move-up;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes move-down {
+  0% {
+    transform: translate(0, 50px) rotate(90deg);
+  }
+
+  50% {
+    transform: translate(0, 55px) rotate(90deg);
+  }
+
+  100% {
+    transform: translate(0, 50px) rotate(90deg);
+  }
+}
+
+@keyframes move-up {
+  0% {
+    transform: translate(0, 50px) rotate(-90deg);
+  }
+
+  50% {
+    transform: translate(0, 55px) rotate(-90deg);
+  }
+
+  100% {
+    transform: translate(0, 50px) rotate(-90deg);
+  }
+}
+
+
+.link {
+  width: 120px;
   display: flex;
-  justify-content: center;
-  width: 216px;
+  justify-content: space-around;
 }
 
-.footer-img{
+.footer-img {
   width: 50px;
 }
 
-.year{
-  position: absolute;
-  top: translate-transform(50%, 50%);
-  right: 25px;
+.year {
   font-size: 14px;
   font-family: sans-serif;
 }

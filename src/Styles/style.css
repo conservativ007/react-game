@@ -1,22 +1,24 @@
-.board{
-  width: 650px;
-  height: 236px;
-  margin: 0 auto;
-  
+.board {
+  position: relative;
+  width: 100%;
+  height: 235px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  z-index: 2;
 }
 
-.board-1{
+.board-1 {
   background-color: #14bdac;
 }
 
-.board-2{
-  background-color: rgba(116, 185, 255,1.0);
+.board-2 {
+  background-color: rgba(116, 185, 255, 1.0);
 }
 
-.tic-tac-toe{
+.tic-tac-toe {
   width: 216px;
   height: 216px;
   display: flex;
@@ -25,10 +27,10 @@
 
 
 
-.elem-board{
+.elem-board {
   width: 72px;
   height: 72px;
-  
+
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -44,40 +46,38 @@
   border: 2px solid #0984e3;
 }
 
-.elem-board:nth-child(1){
+.elem-board:nth-child(1) {
   border-left: none;
   border-top: none;
 }
 
-.elem-board:nth-child(2){
+.elem-board:nth-child(2) {
   border-top: none;
 }
 
-.elem-board:nth-child(3){
+.elem-board:nth-child(3) {
   border-top: none;
   border-right: none;
 }
 
-.elem-board:nth-child(4){
+.elem-board:nth-child(4) {
   border-left: none;
 }
 
-.elem-board:nth-child(6){
+.elem-board:nth-child(6) {
   border-right: none;
 }
 
-.elem-board:nth-child(7){
+.elem-board:nth-child(7) {
   border-bottom: none;
   border-left: none;
 }
 
-.elem-board:nth-child(8){
+.elem-board:nth-child(8) {
   border-bottom: none;
 }
 
-.elem-board:nth-child(9){
+.elem-board:nth-child(9) {
   border-bottom: none;
   border-right: none;
 }
-
-
