@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import Componenta from './Componenta.jsx';
 import Footer from './Footer.jsx';
 import Head from './Head.jsx';
 import Settings from './Settings.jsx';
-import Records from './Records.jsx';
-import {Context} from './Context.jsx';
-import {saveRecord, getArrayInLocalStorage, getA1InLocalStorage} from './function';
+import { Context } from './Context.jsx';
+import { saveRecord, getArrayInLocalStorage, getA1InLocalStorage } from './function';
 
 
 function App() {
 
   let arrInLocal = getArrayInLocalStorage();
   let a1InLocal = getA1InLocalStorage();
-  const [arr, setArr] = useState( arrInLocal ? arrInLocal : Array(9).fill(null) );
+  const [arr, setArr] = useState(arrInLocal ? arrInLocal : Array(9).fill(null));
   let [a1, setA1] = useState(a1InLocal ? a1InLocal : 'x')
   let [move, setMove] = useState(true);
   let [x, setX] = useState('-');
@@ -31,29 +30,29 @@ function App() {
   useEffect(() => {
     localStorage.setItem("array", JSON.stringify(arr));
   }, [arr]);
-  
+
   useEffect(() => {
     localStorage.setItem("a1", a1);
   }, [a1]);
 
 
   const winnerLines = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [2,4,6]
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
   ];
 
   function clickHandler(index) {
-    
+
     let copy = arr.slice();
-    
-    if(copy[index] !== null) return;
-    if(!move) return;
+
+    if (copy[index] !== null) return;
+    if (!move) return;
 
     copy[index] = a1;
     setA1(a1 === 'x' ? 'o' : 'x');
@@ -62,33 +61,33 @@ function App() {
     isWin(a1, copy);
   }
 
-  function isWin(element, copy){
+  function isWin(element, copy) {
 
     let win = winnerLines.some(test => {
-      if(copy[test[0]] === element 
+      if (copy[test[0]] === element
         && copy[test[1]] === element
-        && copy[test[2]] === element){
-          return true;
-        }
+        && copy[test[2]] === element) {
+        return true;
+      }
     })
 
-    if(win) {
+    if (win) {
       console.log(element + ' winner');
       setWinner(element);
       setA1('Игра окончена');
       setMove(false);
       saveRecord(element);
 
-      if(element === 'x'){
+      if (element === 'x') {
         setX(x === '-' ? 1 : x += 1);
-      } else if(element === 'o') {
+      } else if (element === 'o') {
         setO(o === '-' ? 1 : o += 1);
       }
     }
   }
-  
 
-  function resetGame(){
+
+  function resetGame() {
     setArr(Array(9).fill(null))
     setA1(select)
     setMove(true)
@@ -97,17 +96,17 @@ function App() {
 
   useEffect(() => {
     let result = arr.every(i => i !== null)
-    if(result && a1 !== 'Игра окончена') {
+    if (result && a1 !== 'Игра окончена') {
       setA1('ничья!');
     }
   }, [arr]);
-  
+
 
   let result = arr.map((elem, index) => {
-    return <Componenta 
-      key={index} 
-      index={index} 
-      elem={elem} 
+    return <Componenta
+      key={index}
+      index={index}
+      elem={elem}
       clickHandler={clickHandler}
       soundPlay={soundPlay}
       soundClick={soundClick}
@@ -117,14 +116,14 @@ function App() {
 
   return (
     <Router>
-      <Context.Provider value={{setGamer, gamer, board, setBoard, setSelect, select, resetGame, setA1, a1, winner}} >
+      <Context.Provider value={{ setGamer, gamer, board, setBoard, setSelect, select, resetGame, setA1, a1, winner }} >
         <Head elem={a1} setA1={setA1} x={x} o={o} />
         <div className={board ? 'board board-1' : 'board board-2'}>
           <div className="tic-tac-toe">
             {result}
           </div>
         </div>
-        <Settings 
+        <Settings
           soundPlay={soundPlay}
           setSoundPlay={setSoundPlay}
           soundClick={soundClick}
@@ -132,10 +131,6 @@ function App() {
         />
         <Footer resetGame={resetGame} />
       </Context.Provider>
-      <Switch>
-        <Route exact path="/records" component={Records} />
-        <Route exact path="/" />
-      </Switch>
     </Router>
   )
 }

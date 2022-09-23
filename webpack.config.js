@@ -1,62 +1,75 @@
 const path = require('path');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+let mode = 'development';
+let target = 'web';
+if (process.env.NODE_ENV === 'production') {
+  mode = 'production';
+  target = 'browserslist';
+}
+
+const plugins = [
+  new MiniCssExtractPlugin({
+    filename: '[name].[contenthash].css',
+  }),
+  new HtmlWebpackPlugin({
+    template: './src/index.html',
+  }),
+];
+
+if (process.env.SERVE) {
+  plugins.push(new ReactRefreshWebpackPlugin());
+}
 
 module.exports = {
-  mode: 'development',
-  entry: ["@babel/polyfill", './src/index.jsx'],
+  mode,
+  target,
+  plugins,
+  devtool: 'source-map',
+  entry: './src/index.jsx',
+  devServer: {
+    static: './dist',
+    hot: true,
+  },
+
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    assetModuleFilename: 'assets/[hash][ext][query]',
+    clean: true,
   },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000,
-    historyApiFallback: true
-  },
-  plugins: [
-    new HTMLWebpackPlugin({
-      template: './src/index.html',
-      title: 'Development',
-    }),
-    new CleanWebpackPlugin(),
-  ],
+
   module: {
     rules: [
+      { test: /\.(html)$/, use: ['html-loader'] },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.(s[ac]|c)ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
       {
-        test: /\.(jpg|jpeg|png|svg)$/,
-        use: ['file-loader']
+        test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
+        type: mode === 'production' ? 'asset' : 'asset/resource',
       },
       {
-        test: /\.mp3$/,
-        loader: 'file-loader',
-        
+        test: /\.(woff2?|eot|ttf|otf)$/i,
+        type: 'asset/resource',
       },
       {
-        test: /\.m?js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+            cacheDirectory: true,
+          },
+        },
       },
-      {
-        test: /\.m?jsx$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
-      }
-    ]
-  }
+    ],
+  },
 };
