@@ -1,0 +1,96 @@
+.settings {
+  position: absolute;
+  padding: 10px 10px;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 40px);
+  height: 70px;
+  border: 1px solid silver;
+  /* border-bottom: 4px solid silver; */
+  border-radius: 10px;
+
+  transition: .5s;
+}
+
+.settings div+div {
+  margin-left: 10px;
+}
+
+.settings.show-settings {
+  bottom: -120px;
+}
+
+@media(max-width: 500px) {
+  .settings {
+    height: 200px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .settings.show-settings {
+    bottom: -250px;
+  }
+
+  .records {
+    align-items: flex-start;
+  }
+}
+
+.setting label {
+  cursor: pointer;
+}
+
+.setting label input[type="checkbox"] {
+  display: none;
+}
+
+.setting label span {
+  position: relative;
+  display: inline-block;
+  background-color: #424242;
+  padding: 5px 25px;
+  color: #555;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+  border-radius: 10px;
+  font-size: 20px;
+  user-select: none;
+  overflow: hidden;
+  transition: .2s;
+}
+
+.setting label span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: rgba(255, 255, 255, .1);
+}
+
+.setting.setting-active:nth-child(1) label span {
+  background-color: #e91e63;
+  color: white;
+  box-shadow: 0 2px 20px #e91e63;
+}
+
+.setting.setting-active:nth-child(2) label span {
+  background-color: #0f0;
+  color: white;
+  box-shadow: 0 2px 20px #0f0;
+}
+
+.setting.setting-active:nth-child(3) label span {
+  background-color: #df01d7;
+  color: white;
+  box-shadow: 0 2px 20px #df01d7;
+}
+
+.setting.setting-active:nth-child(4) label span {
+  background-color: #0984e3;
+  color: white;
+  box-shadow: 0 2px 20px #0984e3;
+}
