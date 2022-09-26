@@ -1,7 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/footer.css';
 
+import { useDispatch } from 'react-redux';
+import { actionEndGame, actionSetDrow } from '../store/playersReducer';
+
 export default function Footer({ resetGame }) {
+
+  const dispatch = useDispatch();
+
+  function reloadGame() {
+    resetGame();
+    dispatch(actionEndGame(false));
+    dispatch(actionSetDrow(false));
+  }
 
   let [isShowSettings, setIsShowSettings] = useState(false);
   let buttonOfSetting = useRef(null);
@@ -27,7 +38,7 @@ export default function Footer({ resetGame }) {
         </span>
       </div>
       <div className="reset-game">
-        <p onClick={() => resetGame()}>начать занаво</p>
+        <p onClick={() => reloadGame()}>начать занаво</p>
         <div
           ref={buttonOfSetting}
           onClick={() => showSettings()} >&#187;</div>

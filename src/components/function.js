@@ -1,4 +1,4 @@
-function saveRecord(element) {
+export function saveRecord(element) {
 
   let res = JSON.parse(localStorage.getItem("records"));
   if (element === 'abra-cadabra') return res;
@@ -18,24 +18,17 @@ function saveRecord(element) {
   return res;
 }
 
-function getArrayInLocalStorage() {
+export function getArrayInLocalStorage() {
   let res = JSON.parse(localStorage.getItem("array"));
   return res;
 }
 
-function getA1InLocalStorage() {
+export function getA1InLocalStorage() {
   let res = localStorage.getItem("a1");
   return res;
 }
 
-function getSittingsInLocalStorage(value) {
+export function getSittingsInLocalStorage(value) {
   let res = localStorage.getItem(value);
   return res;
-}
-
-export {
-  saveRecord,
-  getArrayInLocalStorage,
-  getA1InLocalStorage,
-  getSittingsInLocalStorage,
 }

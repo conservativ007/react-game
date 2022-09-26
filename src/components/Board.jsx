@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import { saveRecord } from './function.js';
 import Cell from "./Cell.jsx";
-import { useSelector } from 'react-redux';
 
-const Board = ({ a1, setA1, move, setMove, setWinner, setO, setX, x, o, arr, setArr }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { actionChangePlayer, actionEndGame, actionIncrement, actionSetDrow, actionSetWinner } from '../store/playersReducer.js';
+
+const Board = ({ move, setMove, arr, setArr }) => {
 
   const boardSettings = useSelector(store => store.gameSettingsReducer);
+  const playersSettings = useSelector(store => store.playersReducer);
+  const dispatch = useDispatch();
 
   const winnerLines = [
     [0, 1, 2],
@@ -19,72 +23,62 @@ const Board = ({ a1, setA1, move, setMove, setWinner, setO, setX, x, o, arr, set
   ];
 
   useEffect(() => {
-    localStorage.setItem("a1", a1);
-  }, [a1]);
-
-  useEffect(() => {
-    localStorage.setItem("array", JSON.stringify(arr));
-  }, [arr]);
-
-  useEffect(() => {
-    let result = arr.every(i => i !== null)
-    if (result && a1 !== 'Игра окончена') {
-      setA1('ничья!');
+    let result = arr.every(i => i !== null);
+    if (result === true && playersSettings.endGame === false) {
+      dispatch(actionSetDrow(true));
+      dispatch(actionEndGame(true));
     }
-  }, [arr]);
+  }, [arr, playersSettings.endGame]);
 
-  function clickHandler(index) {
 
+  function gamerMove(index) {
     let copy = arr.slice();
 
     if (copy[index] !== null) return;
     if (!move) return;
 
-    copy[index] = a1;
-    setA1(a1 === 'x' ? 'o' : 'x');
+    copy[index] = playersSettings.player;
+    dispatch(actionChangePlayer(playersSettings.player === "x" ? "o" : "x"));
 
     setArr(copy);
-    isWin(a1, copy);
+    isWin(copy);
   }
 
-  function isWin(element, copy) {
+  function isWin(copy) {
 
     let win = winnerLines.some(test => {
-      if (copy[test[0]] === element
-        && copy[test[1]] === element
-        && copy[test[2]] === element) {
+      if (copy[test[0]] === playersSettings.player
+        && copy[test[1]] === playersSettings.player
+        && copy[test[2]] === playersSettings.player) {
         return true;
       }
     })
 
     if (win) {
-      console.log(element + ' winner');
-      setWinner(element);
-      setA1('Игра окончена');
+      console.log(playersSettings.player + ' winner');
       setMove(false);
-      saveRecord(element);
+      saveRecord(playersSettings.player);
 
-      if (element === 'x') {
-        setX(x === '-' ? 1 : x += 1);
-      } else if (element === 'o') {
-        setO(o === '-' ? 1 : o += 1);
-      }
+      dispatch(actionIncrement(playersSettings.player));
+      dispatch(actionEndGame(true));
+      dispatch(actionSetWinner(playersSettings.player));
     }
   }
 
-  let result = arr.map((elem, index) => {
+
+  let cells = arr.map((elem, index) => {
     return <Cell
       key={index}
       index={index}
       elem={elem}
-      clickHandler={clickHandler}
+      gamerMove={gamerMove}
     />
   })
 
   return (
     <div className={boardSettings.isBoardStyleChanged === false ? 'board board-1' : 'board board-2'}>
       <div className="tic-tac-toe">
-        {result}
+        {cells}
       </div>
     </div>
   );

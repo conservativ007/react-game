@@ -12,6 +12,12 @@
   align-items: center;
 }
 
+.header .show-winner {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
 .move {
   margin-top: 10px;
   display: flex;
@@ -38,6 +44,8 @@
   padding: 0 10px;
   display: flex;
   justify-content: space-between;
+
+  cursor: pointer;
 }
 
 .active {

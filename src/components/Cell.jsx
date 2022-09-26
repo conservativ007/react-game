@@ -2,9 +2,18 @@ import React from 'react';
 import Gamer from './Gamer.jsx';
 import { useSelector } from 'react-redux';
 
-export default function Cell({ clickHandler, index, elem }) {
+import useSound from 'use-sound';
+import soundClickFile from "../assets/sounds/click2.mp3";
+
+export default function Cell({ gamerMove, index, elem }) {
 
   const board = useSelector(store => store.gameSettingsReducer);
+  const [play] = useSound(soundClickFile);
+
+  function clickHandler(index) {
+    gamerMove(index);
+    if (board.isSoundByClick === true) play();
+  }
 
   return (
     <div
