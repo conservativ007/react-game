@@ -8,12 +8,12 @@
   border-top-right-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
-.header .show-winner {
-  height: 50px;
+.header .message {
+  height: 40px;
   display: flex;
   align-items: center;
 }
@@ -30,7 +30,7 @@
   width: 390px;
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .gamers-one,
@@ -52,6 +52,12 @@
   box-shadow: 0 4px 5px rgb(0 0 0 / 16%);
   border-bottom: 2px solid #14bdac;
   transition: .1s;
+}
+
+.choose-gamer {
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 
 @media(max-width: 500px) {

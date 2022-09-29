@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../styles/footer.css';
 
 import { useDispatch } from 'react-redux';
-import { actionEndGame, actionSetDrow } from '../store/playersReducer';
+import { actionEndGame, actionSetDrow, actionChangePlayer } from '../store/playersReducer';
 
 export default function Footer({ resetGame }) {
 
@@ -12,6 +12,7 @@ export default function Footer({ resetGame }) {
     resetGame();
     dispatch(actionEndGame(false));
     dispatch(actionSetDrow(false));
+    dispatch(actionChangePlayer("x"));
   }
 
   let [isShowSettings, setIsShowSettings] = useState(false);

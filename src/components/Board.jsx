@@ -1,26 +1,22 @@
 import React, { useEffect } from 'react';
-import { saveRecord } from './function.js';
+import { checkWinnerLines, getIndexAiFirstMove } from './function.js';
 import Cell from "./Cell.jsx";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { actionChangePlayer, actionEndGame, actionIncrement, actionSetDrow, actionSetWinner } from '../store/playersReducer.js';
+import { actionChangePlayer, actionEndGame, actionIncrement, actionSetDrow, actionSetPlayer, actionSetWinner } from '../store/playersReducer.js';
 
-const Board = ({ move, setMove, arr, setArr }) => {
+import { winnerLinesTwo } from './function.js';
+
+const Board = ({ arr, setArr }) => {
 
   const boardSettings = useSelector(store => store.gameSettingsReducer);
   const playersSettings = useSelector(store => store.playersReducer);
+  const isAi = useSelector(store => store.aiSetingsRedicer);
   const dispatch = useDispatch();
 
-  const winnerLines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ];
+  useEffect(() => {
+    dispatch(actionSetPlayer("x"));
+  }, []);
 
   useEffect(() => {
     let result = arr.every(i => i !== null);
@@ -32,37 +28,60 @@ const Board = ({ move, setMove, arr, setArr }) => {
 
 
   function gamerMove(index) {
+    if (playersSettings.endGame === true) return;
     let copy = arr.slice();
+    isWin(copy);
 
     if (copy[index] !== null) return;
-    if (!move) return;
-
-    copy[index] = playersSettings.player;
-    dispatch(actionChangePlayer(playersSettings.player === "x" ? "o" : "x"));
+    copy[index] = playersSettings.whoMove;
+    dispatch(actionChangePlayer(playersSettings.whoMove === "x" ? "o" : "x"));
 
     setArr(copy);
+    isAIchousen(copy, playersSettings.whoPlayer);
+  }
+
+  function isAIchousen(copy, player) {
+    if (isAi.ai !== true) return;
+    let result = checkWinnerLines(copy, player);
+
+    if (result === "first move") {
+      setTimeout(() => {
+        let indexMove = getIndexAiFirstMove(copy);
+        console.log("moved ai to index", indexMove);
+        copy.splice(indexMove, 1, "o");
+        setArr(copy);
+        dispatch(actionChangePlayer("x"));
+      }, 400);
+    }
+
+    else if (result === "end-game") {
+      dispatch(actionEndGame(true));
+    }
+
+    else if (typeof result === "number") {
+      copy.splice(result, 1, "o");
+      setArr(copy);
+      dispatch(actionChangePlayer("x"));
+    }
+
     isWin(copy);
   }
 
   function isWin(copy) {
+    let x = null;
+    let o = null;
+    winnerLinesTwo.forEach(line => {
+      x = line.every(i => copy[i] === "x");
+      o = line.every(i => copy[i] === "o");
 
-    let win = winnerLines.some(test => {
-      if (copy[test[0]] === playersSettings.player
-        && copy[test[1]] === playersSettings.player
-        && copy[test[2]] === playersSettings.player) {
-        return true;
+      if (o === true || x === true) {
+        dispatch(actionEndGame(true));
+        dispatch(actionSetWinner(o === true ? "o" : "x"));
+        dispatch(actionIncrement(o === true ? "o" : "x"));
+        dispatch(actionChangePlayer("x"));
+        console.log("winner: ", o === true ? o : x);
       }
-    })
-
-    if (win) {
-      console.log(playersSettings.player + ' winner');
-      setMove(false);
-      saveRecord(playersSettings.player);
-
-      dispatch(actionIncrement(playersSettings.player));
-      dispatch(actionEndGame(true));
-      dispatch(actionSetWinner(playersSettings.player));
-    }
+    });
   }
 
 

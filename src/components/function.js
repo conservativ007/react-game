@@ -1,3 +1,14 @@
+export const winnerLinesTwo = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6]
+]
+
 export function saveRecord(element) {
 
   let res = JSON.parse(localStorage.getItem("records"));
@@ -31,4 +42,91 @@ export function getA1InLocalStorage() {
 export function getSittingsInLocalStorage(value) {
   let res = localStorage.getItem(value);
   return res;
+}
+
+const winnerLines = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6]
+];
+
+function getWinnerLines() {
+  return [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
+}
+
+let copyWinnerLines = null;
+
+export function checkWinnerLines(arr) {
+
+  copyWinnerLines = getWinnerLines();
+
+  let num = 0;
+  arr.forEach((item) => {
+    if (item === "x") num += 1;
+  });
+
+  if (num === 1) return "first move";
+
+
+  copyWinnerLines.forEach(subArr => {
+    arr.forEach((item, itemIndex) => {
+      if (item === "x") {
+        let index = subArr.indexOf(itemIndex);
+        if (index !== -1) subArr.splice(index, 1);
+      }
+    })
+  });
+
+  copyWinnerLines.sort((a, b) => {
+    if (a.length > b.length) return 1;
+    if (a.length < b.length) return -1;
+    return 0;
+  });
+
+  console.log(copyWinnerLines)
+
+  let theRightIndex = copyWinnerLines.shift();
+  theRightIndex = checkBusyCell(arr, theRightIndex);
+  return theRightIndex[0];
+}
+
+export function checkBusyCell(arr, index) {
+  let willMoveTo = arr[index];
+  if (willMoveTo === null) {
+    return index;
+  } else {
+    let newIndex = getIndexAiFirstMove(arr);
+    console.log("newIndex: ", newIndex);
+    if (newIndex === undefined) return "end-game";
+    return [newIndex];
+  }
+}
+
+export function getIndexAiFirstMove(arr) {
+  let freeIndexes = [];
+  arr.forEach((i, index) => i === null ? freeIndexes.push(index) : null);
+  let randIndex = shuffle(freeIndexes)[0];
+  return randIndex;
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1)); // случайный индекс от 0 до i
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
