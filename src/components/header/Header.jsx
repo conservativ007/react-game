@@ -1,5 +1,5 @@
 import React from 'react';
-import '../.././styles/head.css'
+import "../../styles/header.css";
 
 import X from './X.jsx';
 import O from './O.jsx';

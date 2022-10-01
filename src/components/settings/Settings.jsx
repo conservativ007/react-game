@@ -1,6 +1,6 @@
 import React from 'react';
-import '../.././styles/settings_two.css';
-import '../.././styles/gamers.css';
+import '../../styles/settings.css';
+import '../../styles/gamers.css';
 import GetSetting from './GetSetting.jsx';
 
 export default function Settings() {

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../styles/footer.css';
+import "../styles/footer.css";
 
 import { useDispatch } from 'react-redux';
 import { actionEndGame, actionSetDrow, actionChangePlayer, actionSetWinner, actionSetPlayer, actionStartGame } from '../store/playersReducer';
