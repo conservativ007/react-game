@@ -16,7 +16,7 @@ const Select = () => {
 
   return (
     <select onClick={(e) => choicePlayer(e)} className="choose-gamer">
-      <option value="ai">бот</option>
+      <option value="ai">играть с ботом</option>
       <option value="friend">играть с другом</option>
     </select>
   );

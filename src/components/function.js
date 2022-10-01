@@ -1,13 +1,15 @@
-export const winnerLinesTwo = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]
-]
+export function getWinnerLines() {
+  return [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
+}
 
 export function saveRecord(element) {
 
@@ -44,47 +46,18 @@ export function getSittingsInLocalStorage(value) {
   return res;
 }
 
-const winnerLines = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]
-];
-
-function getWinnerLines() {
-  return [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ]
-}
-
 let copyWinnerLines = null;
 
-export function checkWinnerLines(arr) {
+export function checkWinnerLines(arr, player) {
 
   copyWinnerLines = getWinnerLines();
 
-  let num = 0;
-  arr.forEach((item) => {
-    if (item === "x") num += 1;
-  });
-
-  if (num === 1) return "first move";
-
+  let endGame = arr.every(i => i !== null);
+  if (endGame === true) return "eng-game";
 
   copyWinnerLines.forEach(subArr => {
     arr.forEach((item, itemIndex) => {
-      if (item === "x") {
+      if (item === player) {
         let index = subArr.indexOf(itemIndex);
         if (index !== -1) subArr.splice(index, 1);
       }
@@ -97,8 +70,6 @@ export function checkWinnerLines(arr) {
     return 0;
   });
 
-  console.log(copyWinnerLines)
-
   let theRightIndex = copyWinnerLines.shift();
   theRightIndex = checkBusyCell(arr, theRightIndex);
   return theRightIndex[0];
@@ -109,14 +80,14 @@ export function checkBusyCell(arr, index) {
   if (willMoveTo === null) {
     return index;
   } else {
-    let newIndex = getIndexAiFirstMove(arr);
-    console.log("newIndex: ", newIndex);
+    let newIndex = getIndexAiMove(arr);
+    // console.log("newIndex: ", newIndex);
     if (newIndex === undefined) return "end-game";
     return [newIndex];
   }
 }
 
-export function getIndexAiFirstMove(arr) {
+export function getIndexAiMove(arr) {
   let freeIndexes = [];
   arr.forEach((i, index) => i === null ? freeIndexes.push(index) : null);
   let randIndex = shuffle(freeIndexes)[0];
