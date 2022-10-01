@@ -102,3 +102,9 @@ a {
   font-size: 14px;
   font-family: sans-serif;
 }
+
+@media(max-width: 405px) {
+  .reset-game {
+    font-size: 12px;
+  }
+}

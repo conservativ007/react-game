@@ -5,7 +5,8 @@ const defaultStore = {
   whoPlayer: "x",
   winner: null,
   endGame: false,
-  drow: false
+  drow: false,
+  isGameStart: null
 }
 
 const INCREMENT = "INCREMENT";
@@ -14,6 +15,7 @@ const SET_ENDGAME = "SET_ENDGAME";
 const SET_WINNER = "SET_WINNER";
 const SET_DROW = "SET_DROW";
 const WHO_PLAYER = "WHO_PLAYER";
+const START_GAME = "START_GAME";
 
 export function playersReducer(store = defaultStore, action) {
   switch (action.type) {
@@ -29,6 +31,8 @@ export function playersReducer(store = defaultStore, action) {
       return { ...store, winner: action.payload };
     case SET_DROW:
       return { ...store, drow: action.payload };
+    case START_GAME:
+      return { ...store, isGameStart: action.payload };
     default: return store;
   }
 }
@@ -44,3 +48,4 @@ export const actionEndGame = (payload) => ({ type: SET_ENDGAME, payload });
 export const actionSetWinner = (payload) => ({ type: SET_WINNER, payload });
 export const actionSetDrow = (payload) => ({ type: SET_DROW, payload });
 export const actionSetPlayer = (payload) => ({ type: WHO_PLAYER, payload });
+export const actionStartGame = (payload) => ({ type: START_GAME, payload });

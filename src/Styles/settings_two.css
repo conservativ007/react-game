@@ -23,21 +23,7 @@
   bottom: -120px;
 }
 
-@media(max-width: 500px) {
-  .settings {
-    height: 200px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
 
-  .settings.show-settings {
-    bottom: -250px;
-  }
-
-  .records {
-    align-items: flex-start;
-  }
-}
 
 .setting label {
   cursor: pointer;
@@ -93,4 +79,35 @@
   background-color: #0984e3;
   color: white;
   box-shadow: 0 2px 20px #0984e3;
+}
+
+@media(max-width: 500px) {
+  .settings {
+    height: 120px;
+    display: grid;
+    grid-template-columns: 120px 120px;
+    gap: 10px;
+  }
+
+  .settings div+div {
+    margin-left: 0;
+  }
+
+  .settings .setting {
+    width: 120px;
+  }
+
+  .setting label span {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .settings.show-settings {
+    bottom: -170px;
+  }
+
+  .records {
+    align-items: flex-start;
+  }
 }

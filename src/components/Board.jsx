@@ -3,7 +3,10 @@ import { checkWinnerLines } from './function.js';
 import Cell from "./Cell.jsx";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { actionChangePlayer, actionEndGame, actionIncrement, actionSetDrow, actionSetPlayer, actionSetWinner } from '../store/playersReducer.js';
+import { actionChangePlayer, actionEndGame, actionIncrement, actionSetDrow, actionSetPlayer, actionSetWinner, actionStartGame } from '../store/playersReducer.js';
+
+import useSound from 'use-sound';
+import soundClickFile from "../assets/sounds/click2.mp3";
 
 import { getWinnerLines } from './function.js';
 
@@ -13,6 +16,8 @@ const Board = ({ arr, setArr }) => {
   const playersSettings = useSelector(store => store.playersReducer);
   const isAi = useSelector(store => store.aiSetingsRedicer);
   const dispatch = useDispatch();
+
+  const [play] = useSound(soundClickFile);
 
   useEffect(() => {
     dispatch(actionSetPlayer("x"));
@@ -35,6 +40,8 @@ const Board = ({ arr, setArr }) => {
     copy[index] = playersSettings.whoMove;
 
     dispatch(actionChangePlayer(playersSettings.whoMove === "x" ? "o" : "x"));
+    if (playersSettings.isGameStart === null) dispatch(actionStartGame(true));
+
     setArr(copy);
 
     let endGame = isWin(copy);
@@ -48,21 +55,19 @@ const Board = ({ arr, setArr }) => {
 
     let result = checkWinnerLines(copy, player);
 
-    console.log(player)
-
     if (result === "end-game") {
       dispatch(actionEndGame(true));
       dispatch(actionSetDrow(true));
     }
 
     else if (typeof result === "number") {
-      console.log()
       setTimeout(() => {
         copy.splice(result, 1, player === "x" ? "o" : "x");
         setArr(copy);
         dispatch(actionChangePlayer(player));
         isWin(copy);
 
+        if (boardSettings.isSoundByClick === true) play();
         console.log(result);
       }, 400);
     }

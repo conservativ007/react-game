@@ -5,9 +5,15 @@ const Message = () => {
 
   const playersSettings = useSelector(store => store.playersReducer);
 
-  if (playersSettings.endGame === false) {
+  if (playersSettings.endGame === false && playersSettings.isGameStart === null) {
     return (
       <p className="message">Начните игру или выберите игрока</p>
+    )
+  }
+
+  if (playersSettings.isGameStart === true && playersSettings.endGame === false) {
+    return (
+      <p className="message">ходит: {playersSettings.whoMove}</p>
     )
   }
 
