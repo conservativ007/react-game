@@ -1,6 +1,7 @@
 .footer {
   width: 100%;
   height: 50px;
+
   position: relative;
   border: 1px solid silver;
   border-top: none;
@@ -29,7 +30,7 @@ a {
 }
 
 .reset-game {
-  width: 122px;
+  width: 125px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,8 +44,12 @@ a {
 }
 
 .reset-game div {
-  font-size: 40px;
   position: absolute;
+  width: 22px;
+  height: 22px;
+  background-image: url("../assets/images/fast-forward-double-arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 100%, cover;
 }
 
 .animate-down {
@@ -103,8 +108,28 @@ a {
   font-family: sans-serif;
 }
 
-@media(max-width: 405px) {
+@media(max-width: 450px) {
+  .author {
+    width: 0;
+    font-size: 14px;
+    flex-grow: 1;
+  }
+
   .reset-game {
-    font-size: 12px;
+    width: 0;
+    flex-grow: 2;
+  }
+
+  .link {
+    width: 0;
+    flex-grow: 1;
+  }
+
+  .footer-img {
+    width: 40px;
+  }
+
+  .year {
+    font-size: 13px;
   }
 }

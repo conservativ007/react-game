@@ -11,6 +11,8 @@ export default function Settings() {
       <GetSetting value={"click"} />
       <GetSetting value={"x, y"} />
       <GetSetting value={"board"} />
+
+      <div className="bottom-line"></div>
     </div>
   )
 }

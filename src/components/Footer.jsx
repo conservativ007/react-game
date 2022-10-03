@@ -45,7 +45,12 @@ export default function Footer({ resetGame }) {
         <p onClick={() => reloadGame()}>начать занаво</p>
         <div
           ref={buttonOfSetting}
-          onClick={() => showSettings()} >&#187;</div>
+          onClick={() => showSettings()}
+        ></div>
+        {/* <div
+          ref={buttonOfSetting}
+          onClick={() => showSettings()} >&#187;
+        </div> */}
       </div>
       <div className="link">
         <a target='blink' href="https://rs.school/js/">

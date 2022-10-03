@@ -8,11 +8,19 @@
   align-items: center;
   width: calc(100% - 40px);
   height: 70px;
-  border: 1px solid silver;
-  /* border-bottom: 4px solid silver; */
   border-radius: 10px;
 
   transition: .5s;
+}
+
+.settings .bottom-line {
+  margin-left: 0;
+  position: absolute;
+  bottom: 0;
+  width: 410px;
+  left: calc(50% - 205px);
+  height: 2px;
+  background-color: #00b894;
 }
 
 .settings div+div {
@@ -22,8 +30,6 @@
 .settings.show-settings {
   bottom: -120px;
 }
-
-
 
 .setting label {
   cursor: pointer;
