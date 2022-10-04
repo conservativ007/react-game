@@ -1,4 +1,4 @@
-# react-game
-Всем привет :)
-Для запуска игры необходимо склонировать проект, перейти в дерикторию с игрой где лежит файл package.json, выполнить команду npm install, после установки всех зависимостей выполнить команду npn run start или просто перейдите по ссылке 
-https://conservativ007-react-game.netlify.app/
+# Meet this game tic-tac-toe
+#### [game](https://tic-tac-toe-conservative.netlify.app)
+
+Technology stack: html, css, js, react, redux

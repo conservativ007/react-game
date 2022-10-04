@@ -1,0 +1,75 @@
+.header {
+  position: relative;
+  width: 100%;
+  height: 125px;
+  border: 1px solid silver;
+  box-sizing: border-box;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header .message {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.move {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gamers {
+  width: 390px;
+  display: flex;
+  justify-content: space-between;
+  /* margin-top: 30px; */
+}
+
+.gamers-one,
+.gamers-two {
+  width: 188px;
+  height: 36px;
+  border-bottom: 1px solid silver;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 25px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+
+  cursor: pointer;
+}
+
+.active {
+  box-shadow: 0 4px 5px rgb(0 0 0 / 16%);
+  border-bottom: 2px solid #14bdac;
+  transition: .1s;
+}
+
+.choose-gamer {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+@media(max-width: 500px) {
+  .gamers {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+
+  .gamers-one,
+  .gamers-two {
+    width: 145px;
+  }
+}
