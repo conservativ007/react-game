@@ -95,6 +95,11 @@
     gap: 10px;
   }
 
+  .settings .bottom-line {
+    width: 240px;
+    left: calc(50% - 120px);
+  }
+
   .settings div+div {
     margin-left: 0;
   }
