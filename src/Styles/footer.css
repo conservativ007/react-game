@@ -92,11 +92,11 @@ a {
   }
 }
 
-
 .link {
   width: 120px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .footer-img {
@@ -108,7 +108,7 @@ a {
   font-family: sans-serif;
 }
 
-@media(max-width: 450px) {
+@media (max-width: 450px) {
   .author {
     width: 0;
     font-size: 14px;
@@ -118,11 +118,6 @@ a {
   .reset-game {
     width: 0;
     flex-grow: 2;
-  }
-
-  .link {
-    width: 0;
-    flex-grow: 1;
   }
 
   .footer-img {
